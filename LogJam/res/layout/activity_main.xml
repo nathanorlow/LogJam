@@ -14,14 +14,14 @@
         android:src="@drawable/log1"
         android:id="@+id/logsample1"
         android:layout_span="1"        
-   		android:contentDescription="@string/main_button"/>
+   		android:contentDescription="@string/test"/>
    	</TableRow>
    	<TableRow>
 
 	<ImageView
 	    android:id="@+id/logsample2"
 	    android:layout_span="2"
-	    android:contentDescription="@string/main_button"
+	    android:contentDescription="@string/test"
 	    android:src="@drawable/log2" />
 
    	</TableRow>
@@ -30,7 +30,7 @@
    	<ImageView
    	    android:id="@+id/logsample3"
    	    android:layout_span="3"
-   	    android:contentDescription="@string/main_button"
+   	    android:contentDescription="@string/test"
    	    android:src="@drawable/log3" />
 
     </TableRow>
