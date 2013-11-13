@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Log Jam</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="main_button">Main Button</string>
+    <string name="exit_string">Exit</string>
+    <string name="stream_button">Go</string>
+    <string name="current_log_start">Starting</string>
+    <string name="test">-</string>
+
+</resources>
