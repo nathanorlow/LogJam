@@ -1,6 +1,7 @@
 package org.nateorlow.logjam;
 
 import android.os.Bundle;
+
 import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
@@ -9,13 +10,13 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import java.util.Random;
 
 import junit.framework.Assert;
 //import static java.lang.System.out;
-
-
+  
 public class MainActivity extends Activity {
     Button b1, b2;
     int i;
@@ -28,7 +29,7 @@ public class MainActivity extends Activity {
     public static final int CAPACITY=5;
     public static final int MAXLOG=3;
     TextView current_log_text_view;
-    TableRow[] stream_row = new TableRow[5];
+    LinearLayout[] stream_row = new LinearLayout[5];
     Button[] stream_btn = new Button[5];
 
     ImageView[] log_samples = new ImageView[3];
@@ -52,11 +53,6 @@ public class MainActivity extends Activity {
     	R.drawable.log2,
     	R.drawable.log3
     };//size should equal MAXLOG
-    private static final int[] LOG_SAMPLES={
-    	R.id.logsample1,
-    	R.id.logsample2,
-    	R.id.logsample3
-    };  //size should equal MAXLOG
     
     @Override
    	protected void onCreate(Bundle savedInstanceState) {
@@ -72,21 +68,18 @@ public class MainActivity extends Activity {
 	        		finish();//exit
 	        	}
 	        });
-	   for(i=0; i<=2; i++){
-		   log_samples[i]=(ImageView) findViewById(LOG_SAMPLES[i]);
-	   }
 	   
 	   for(i=0; i<=4; i++){
 		   stream_btn[i]= (Button) findViewById(BUTTON_IDS[i]);
 		   count[i]= 0;
 		   stream_btn[i].setTag(i);
-		   stream_row[i]=(TableRow) findViewById(TABLE_ROWS[i]);
+		   stream_row[i]=(LinearLayout) findViewById(TABLE_ROWS[i]);
 		   }
 	   
 	   for(i=0; i<5; i++){
 	   stream_btn[i].setOnClickListener(new OnClickListener(){
 		   public void onClick(View v){
-			   TableRow.LayoutParams params=new TableRow.LayoutParams();
+			   //LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
 			   i=(Integer) v.getTag();
 			   //System.out.println("Counting with i="+i);
 			   count[i]+=currentlog;
@@ -98,14 +91,8 @@ public class MainActivity extends Activity {
 			   Assert.assertTrue("Log to place must be positive", currentlog>0);
 			   Assert.assertTrue("Log to place is too large", currentlog<=MAXLOG);
 			   System.out.println("Placing log with size "+Integer.toString(currentlog));
-			   //currentlog=1;
 			   newImage.setImageResource(LOG_IMAGES[currentlog-1]);
-			   newImage.setScaleType(ImageView.ScaleType.FIT_XY);
-			   //params.span=currentlog;
-			   params=(TableRow.LayoutParams) log_samples[currentlog-1].getLayoutParams();
-			   params.height=(int) getResources().getDimension(R.dimen.stream_height);
-			   //params.width=TableRow.LayoutParams.WRAP_CONTENT;
-			   newImage.setLayoutParams(params);
+			   //newImage.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 			   stream_row[i].addView(newImage);
 			   if (count[i]>CAPACITY){
 				   stream_btn[i].setText("Bust!");
