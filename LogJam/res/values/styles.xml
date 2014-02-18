@@ -17,4 +17,21 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    <style name="StreamTemplate">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">@dimen/stream_text_height</item>
+    </style>
+    <style name="StreamButtonTemplate" parent="StreamTemplate">
+        <item name="android:text">@string/stream_button</item> 
+    </style> 
+    <style name="StreamTextTemplate" parent="StreamTemplate">
+        <item name="android:text">@string/goal_default</item>
+    </style>
+    <style name="LeftCenterTemplate">
+         <item name="android:layout_height">match_parent</item>
+         <item name="android:gravity">left|center_vertical</item>
+         <item name="android:orientation">horizontal</item> 
+    </style>
+    
 </resources>

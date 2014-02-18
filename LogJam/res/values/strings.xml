@@ -9,5 +9,6 @@
     <string name="stream_button">Go</string>
     <string name="current_log_start">Starting</string>
     <string name="test">-</string>
+    <string name="goal_default">-</string>
 
 </resources>
