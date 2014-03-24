@@ -27,11 +27,12 @@ public class MainActivity extends Activity{
 	Stream[] logstream= new Stream[5];
 
 	int score = 0;
-	int currentlog = 0;
+	int current_log_size = 0;
 	public static final int MAXCAPACITY = 5;
 	public static final int MINCAPACITY=1;
 	public static final int MAXLOG = 3;
-	TextView current_log_text_view;
+	//TextView current_log_text_view;
+	ImageView current_log_img;
 	LinearLayout[] stream_row = new LinearLayout[5];
 	Button[] stream_btn = new Button[5];
 	TextView[] goal_text_view = new TextView[5];
@@ -50,10 +51,10 @@ public class MainActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		current_log_text_view = (TextView) findViewById(R.id.current_log_id);
-		currentlog = r.nextInt(MAXLOG) + 1;
-		current_log_text_view.setText(Integer.toString(currentlog));//initialize first log
-
+		//current_log_text_view = (TextView) findViewById(R.id.current_log_id);
+		current_log_img = (ImageView) findViewById(R.id.current_log_img_id);
+		this.makeNewCurrentLog();
+		
 		for (i = 0; i <= 4; i++) {//initialize arrays
 			stream_btn[i] = (Button) findViewById(BUTTON_IDS[i]);
 			goal_text_view[i]= (TextView) findViewById(GOAL_IDS[i]);
@@ -88,11 +89,11 @@ public class MainActivity extends Activity{
 			stream_row[i].setBackgroundColor(Color.TRANSPARENT);
 		}
 		else{
-			logstream[i].addOn(currentlog);
+			logstream[i].addOn(current_log_size);
 			stream_btn[i].setText(Integer.toString(logstream[i].getSum()));//add text (temporarily)
 	
 			ImageView newImage = new ImageView(getBaseContext());
-			newImage.setImageResource(LOG_IMAGES[currentlog - 1]);
+			newImage.setImageResource(LOG_IMAGES[current_log_size - 1]);
 			//newImage.setAdjustViewBounds(true);
 			newImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
 			stream_row[i].addView(newImage);
@@ -102,11 +103,16 @@ public class MainActivity extends Activity{
 			} else if (logstream[i].isFull()) {//score
 				stream_row[i].setBackgroundColor(Color.GREEN);
 			}
-			
-			currentlog = r.nextInt(MAXLOG) + 1;//create random next log
-			current_log_text_view.setText(Integer.toString(currentlog));//update text	
+			this.makeNewCurrentLog();
 		}
 	}
+	
+	public void makeNewCurrentLog(){
+		current_log_size = r.nextInt(MAXLOG) + 1;//create random next log
+		//current_log_text_view.setText(Integer.toString(current_log_size));//update text
+		current_log_img.setImageResource(LOG_IMAGES[current_log_size-1]);		
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
